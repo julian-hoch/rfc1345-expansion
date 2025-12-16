@@ -63,7 +63,9 @@ foreach ($line in $lines) {
     if (-not $includeControl -and ($cp -lt 0x20 -or $cp -eq 0x7F)) { continue }
     if (-not $seen.Add($digraph)) { continue }
     $char = [char]$cp
-    $trigger = if ($null -eq $Prefix) { $digraph } else { "$Prefix$digraph" }
+    $triggerRaw = if ($null -eq $Prefix) { $digraph } else { "$Prefix$digraph" }
+    # Escape hotstring meta chars in trigger: colon (end marker) and backtick (escape char).
+    $trigger = $triggerRaw.Replace('`', '``').Replace(':', '`:')
     $matches.Add([pscustomobject]@{ Trigger = $trigger; Char = $char })
 }
 
@@ -77,7 +79,9 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine()
 
 foreach ($m in $matches) {
-    $escaped = $m.Char -replace '"', '""'
+    # In AHK strings, ` escapes and \" is a literal quote.
+    $text = [string]$m.Char
+    $escaped = $text.Replace('`', '``').Replace('"', '""')
     [void]$sb.AppendLine("$optionBlock$($m.Trigger)::")
     [void]$sb.AppendLine('{')
     [void]$sb.AppendLine('    SendText "' + $escaped + '"')

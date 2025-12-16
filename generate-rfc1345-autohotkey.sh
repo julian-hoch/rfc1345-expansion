@@ -106,7 +106,9 @@ for line in lines:
     if digraph in seen:
         continue
     seen.add(digraph)
-    trigger = f"{PREFIX}{digraph}" if PREFIX is not None else digraph
+    trigger_raw = f"{PREFIX}{digraph}" if PREFIX is not None else digraph
+    # Escape hotstring meta chars in trigger: colon (end marker) and backtick (escape char).
+    trigger = trigger_raw.replace("`", "``").replace(":", "`:")
     matches.append((trigger, char))
 
 stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -121,7 +123,8 @@ option_block = f":{HOTSTRING_OPTS}:" if HOTSTRING_OPTS else "::"
 for trig, ch in matches:
     print(f"{option_block}{trig}::")
     print("{")
-    print(f"    SendText {json.dumps(ch, ensure_ascii=False)}")
+    escaped = ch.replace("`", "``").replace("\"", "\"\"")
+    print(f"    SendText \"{escaped}\"")
     print("}")
     print("")
 PY
