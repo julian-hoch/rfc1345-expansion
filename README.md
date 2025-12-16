@@ -1,7 +1,5 @@
-- [Espanso](#org79c2971)
-      - [AutoHotkey](#org76a9c2c)
-
-![AI Status](https://img.shields.io/badge/AI-Assisted-orange)
+- [Espanso](#org73e30f7)
+      - [AutoHotkey](#org658d9a4)
 
 If you use Vim, you might be familiar with [RFC1345](https://www.rfc-editor.org/rfc/rfc1345) digraphs. You can use them for all sorts of interesting characters, even the now infamouse em-dash (Code: `-M`, rendered as `—`).
 
@@ -14,13 +12,13 @@ The two provided scripts pull the Vim digraph table from GitHub on demand. Share
 -   `--include-control` to include control chars.
 
 
-<a id="org79c2971"></a>
+<a id="org73e30f7"></a>
 
 # Espanso
 
 Run `generate-rfc1345-espanso.sh`, this builds `~/.config/espanso/match/rfc1345.yml` by default.
 
-<div class="source" id="orgf0b6aa7">
+<div class="source" id="org4aa8419">
 <p>
 ./generate-rfc1345-espanso.sh [-p ,] [&ndash;exclude-ascii] [&ndash;include-control] [-o /path/to/match.yml]
 espanso restart
@@ -29,13 +27,13 @@ espanso restart
 </div>
 
 
-<a id="org76a9c2c"></a>
+<a id="org658d9a4"></a>
 
 # AutoHotkey
 
 Run `generate-rfc1345-autohotkey.sh`, this builds `~/Documents/AutoHotkey/rfc1345.ahk` by default (AutoHotkey v2 hotstrings).
 
-<div class="source" id="orgd3bb675">
+<div class="source" id="org92812aa">
 <p>
 ./generate-rfc1345-autohotkey.sh [-p ,] [&ndash;exclude-ascii] [&ndash;include-control] [-O *] [-o /path/to/rfc1345.ahk]
 </p>
@@ -44,11 +42,5 @@ Run `generate-rfc1345-autohotkey.sh`, this builds `~/Documents/AutoHotkey/rfc134
 
 -   Uses `:*:` hotstring options by default for instant expansion; override with `-O/--options` (do not include colons).
 -   Reload/restart your AutoHotkey script after generating.
--   Prefer PowerShell on Windows? Use `generate-rfc1345-autohotkey.ps1` with equivalent flags, e.g.:
 
-<div class="source" id="orgpsahk">
-<p>
-pwsh ./generate-rfc1345-autohotkey.ps1 -Prefix , -ExcludeAscii -IncludeControl -Options * -Output ~/Documents/AutoHotkey/rfc1345.ahk
-</p>
-
-</div>
+![AI Status](https://img.shields.io/badge/AI-Assisted-orange)
