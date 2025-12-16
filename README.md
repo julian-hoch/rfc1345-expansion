@@ -1,5 +1,5 @@
-- [Espanso](#org73e30f7)
-      - [AutoHotkey](#org658d9a4)
+- [Espanso](#orga90f147)
+      - [AutoHotkey](#orgc448fa6)
 
 If you use Vim, you might be familiar with [RFC1345](https://www.rfc-editor.org/rfc/rfc1345) digraphs. You can use them for all sorts of interesting characters, even the now infamouse em-dash (Code: `-M`, rendered as `—`).
 
@@ -12,13 +12,13 @@ The two provided scripts pull the Vim digraph table from GitHub on demand. Share
 -   `--include-control` to include control chars.
 
 
-<a id="org73e30f7"></a>
+<a id="orga90f147"></a>
 
 # Espanso
 
 Run `generate-rfc1345-espanso.sh`, this builds `~/.config/espanso/match/rfc1345.yml` by default.
 
-<div class="source" id="org4aa8419">
+<div class="source" id="org6340500">
 <p>
 ./generate-rfc1345-espanso.sh [-p ,] [&ndash;exclude-ascii] [&ndash;include-control] [-o /path/to/match.yml]
 espanso restart
@@ -27,20 +27,20 @@ espanso restart
 </div>
 
 
-<a id="org658d9a4"></a>
+<a id="orgc448fa6"></a>
 
 # AutoHotkey
 
 Run `generate-rfc1345-autohotkey.sh`, this builds `~/Documents/AutoHotkey/rfc1345.ahk` by default (AutoHotkey v2 hotstrings).
 
-<div class="source" id="org92812aa">
+<div class="source" id="orgd07f566">
 <p>
 ./generate-rfc1345-autohotkey.sh [-p ,] [&ndash;exclude-ascii] [&ndash;include-control] [-O *] [-o /path/to/rfc1345.ahk]
 </p>
 
 </div>
 
--   Uses `:*:` hotstring options by default for instant expansion; override with `-O/--options` (do not include colons).
+-   Uses `:*:` hotstring options by default for instant expansion; override with `-O/--options` (do not include colons). On PowerShell, `-o` is for `-Output` and `-h` / `-?` shows help.
 -   Reload/restart your AutoHotkey script after generating.
 
 ![AI Status](https://img.shields.io/badge/AI-Assisted-orange)

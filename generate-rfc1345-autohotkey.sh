@@ -113,6 +113,8 @@ stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 print("#Requires AutoHotkey v2.0")
 print(f"; Generated {stamp} from Vim digraph table ({url})")
 print(f"; Prefix: {json.dumps(PREFIX)} | Include ASCII: {INCLUDE_ASCII} | Include control: {INCLUDE_CTRL} | Options: {HOTSTRING_OPTS}")
+# Allow triggers containing characters like '(' or ':' by removing them from EndChars.
+print("#Hotstring EndChars -[]{}'\"/\\\\,.?!`n`s`t")
 print("")
 
 option_block = f":{HOTSTRING_OPTS}:" if HOTSTRING_OPTS else "::"

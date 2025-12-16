@@ -1,12 +1,14 @@
+[CmdletBinding(PositionalBinding=$false)]
 param(
-    [string]$Prefix = ",",
+    [Alias("p")][string]$Prefix = ",",
     [switch]$ExcludeAscii,
     [switch]$IncludeControl,
     [string]$Options = "*",
-    [string]$Output = "$HOME/Documents/AutoHotkey/rfc1345.ahk"
+    [Alias("o")][string]$Output = "$HOME/Documents/AutoHotkey/rfc1345.ahk",
+    [Alias("h","?")][switch]$Help
 )
 
-$Help = @'
+$HelpText = @'
 Generate a full RFC1345/Vim digraph AutoHotkey (v2) hotstring file.
 
 Parameters:
@@ -21,8 +23,8 @@ Usage examples:
   .\generate-rfc1345-autohotkey.ps1 -Prefix "" -ExcludeAscii -IncludeControl -Options "" -Output rfc1345.ahk
 '@
 
-if ($Args -contains '-h' -or $Args -contains '--help') {
-    Write-Output $Help
+if ($Help) {
+    Write-Output $HelpText
     exit 0
 }
 
@@ -71,6 +73,7 @@ $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('#Requires AutoHotkey v2.0')
 [void]$sb.AppendLine("; Generated $stamp from Vim digraph table ($url)")
 [void]$sb.AppendLine('; Prefix: "' + $Prefix + '" | Include ASCII: ' + $includeAscii + ' | Include control: ' + $includeControl + ' | Options: ' + $Options)
+[void]$sb.AppendLine('#Hotstring EndChars -[]{}''";/\\,.?!``n``s``t')
 [void]$sb.AppendLine()
 
 foreach ($m in $matches) {
