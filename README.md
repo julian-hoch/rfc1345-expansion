@@ -33,11 +33,12 @@ espanso restart
 
 Run `generate-rfc1345-autohotkey.sh`, this builds `~/Documents/AutoHotkey/rfc1345.ahk` by default (AutoHotkey v2 hotstrings).
 
+Note: AutoHotkey hotstrings are case-insensitive by default. To require exact-case digraphs (e.g. `&PI` but not `&pi`), include the `C` option via `-O` (e.g. `-O C*`). If you omit `C`, upper/lowercase triggers will both match.
+
 <div class="source" id="orgd07f566">
 <p>
-./generate-rfc1345-autohotkey.sh [-p ,] [&ndash;exclude-ascii] [&ndash;include-control] [-O *] [-o /path/to/rfc1345.ahk]
+./generate-rfc1345-autohotkey.sh [-p ,] [--exclude-ascii] [--include-control] [-O C*] [-o /path/to/rfc1345.ahk]
 </p>
-
 </div>
 
 -   Uses `:*:` hotstring options by default for instant expansion; override with `-O/--options` (do not include colons). On PowerShell, `-o` is for `-Output` and `-h` / `-?` shows help.
